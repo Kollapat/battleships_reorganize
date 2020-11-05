@@ -1,0 +1,55 @@
+<!--THIS IS THE LOBBY PAGE-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Battle Ships</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet"> <!--import font-->
+    <script src="http://localhost:7000/socket.io/socket.io.js"></script>   
+    <script src="app.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <script>changeBackgroudUpdate()</script>
+    <div class="row">
+      
+      <div class="columnLeft">
+        <a href="/index.html" class="btn back-btn">Exit Multiplayer</a> 
+        <div class="enterUsername">Enter Your Username</div>
+        <form id="username-form"><input id="username-input" style="width: 70%; height: 30px;" autocomplete="off" type="text" /> <input class="btn" type="button" value="Enter" onclick="saveUsername()"/></form> 
+        <div id="welcomeMessage">Hello, Please Enter Your Username First</div>
+      </div>
+      
+      <div class="columnRight">
+        <h1>Players List</h1>
+        <table id="players">
+          <colgroup>
+            <col span="1" style="width: 60%;">
+            <col span="1" style="width: 40%;">
+         </colgroup>
+
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Option</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>
+              <td id="choice0"><script>getchoice0()</script></td>
+              <td><a class="btn connect-btn" onclick="connect(getchoice0())">Connect & Play</a></td> 
+            </tr>  -->
+          </tbody>  
+        </table>
+      </div>
+
+    </div>
+  
+
+
+
+    <img src="/images/battleship-large.svg" class="splash-battleship-image">
+
+  </body>
+</html>
