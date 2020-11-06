@@ -51,4 +51,23 @@ io.on('connection', socket => {
          })
          console.log(onlineList);
   })
+
+  socket.on('connect', player => { //I choose enemy
+      let enemyId;
+      for(let each of onlineList){
+          if(each.name === player[1]) {
+              enemyId = each.id;
+              break;
+          }
+      }
+      let roomName = player[0] + player[1];
+      socket.join(roomName); //I join
+      io.to(enemyId).emit('informRoom', roomName); //tell enemy to join
+  })
+
+  socket.on('joinRoom', roomName => {
+      socket.join(roomName); // enemy join
+
+      io.to(roomName).emit('start the game', roomName);
+  })
 });

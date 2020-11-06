@@ -11,6 +11,14 @@ socket.on('update list', onlineList => {
   
 })
 
+socket.on('informRoom', roomName => {
+  socket.emit('joinRoom', roomName);
+})
+
+socket.on('start the game', roomName => {
+  location.href = "/multiplayer.html";
+})
+
 var isDupluicated = false;
 socket.on('username exists', () => {
   isDupluicated = true;
@@ -90,7 +98,9 @@ function getTable(input) {
     var cell2 = row.insertCell(1);
     cell1.innerHTML = input[i];
     if (input[i] != username) {
-        cell2.innerHTML = '<a class="btn connect-btn" onclick="connect('+i+')">Connect & Play</a>';
+        var connectParameter = input[i];
+        var test = '\"win\"';
+        cell2.innerHTML = '<a class="btn connect-btn" onclick="connect("win")">Connect & Play</a>';
     } else {
         cell2.innerHTML = "This is you!"
     }
@@ -103,9 +113,10 @@ function connect(choice) {
   if (username == "") {
     alert("Please enter a username first!");
   } else {
-    playerTwoName = playersArray[choice];
-    window.localStorage.setItem("player2Name", playerTwoName);
-    location.href = '/multiplayer.html';
+    window.localStorage.setItem("player2Name", choice);
+    let pair  = [window.localStorage.getItem("player1Name"), choice];
+    socket.emit('connect', pair);
+    location.href = "/multiplayer.html";
   } 
 }
 
