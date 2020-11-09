@@ -14,6 +14,7 @@ socket.on('update list', onlineList => {
 })
 
 socket.on('inform room', (roomName, enemyName, start1st) => {
+  console.log("informed");
   window.localStorage.setItem("player2Name", enemyName);
   socket.emit('joinRoom', roomName);
 })
@@ -206,10 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
     startMultiPlayer()
   }
 
-  /*
+  
   function startMultiPlayer() {
-    const socket = io();
-
     // Get your player number
     socket.on('player-number', num => {
       if (num === -1) {
@@ -292,20 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector(`${player} .connected`).classList.toggle('active')
       if(parseInt(num) === playerNum) document.querySelector(player).style.fontWeight = 'bold'
     }
-  }*/
-
-  // Single Player
-  function startSinglePlayer() {
-    generate(shipArray[0])
-    generate(shipArray[1])
-    generate(shipArray[2])
-    generate(shipArray[3])
-    generate(shipArray[4])
-
-    startButton.addEventListener('click', () => {
-      setupButtons.style.display = 'none'
-      playGameSingle()
-    })
   }
 
   //Create Board

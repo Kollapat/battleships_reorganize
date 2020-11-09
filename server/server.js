@@ -40,7 +40,7 @@ io.on('connection', socket => {
             name: username
         }
         onlineList.push(userData);
-        //console.log(onlineList)
+        console.log(onlineList)
         io.emit('update list', onlineList);
       }
   })
@@ -71,4 +71,54 @@ io.on('connection', socket => {
       socket.join(roomName); // enemy join
       io.to(roomName).emit('start the game', roomName);
   })
+
+  // Handle a socket connection request from web client
+  const connections = [null, null]
+
+  // Find an available player number
+  let playerIndex = -1;
+  for (const i in connections) {
+    if (connections[i] === null) {
+      playerIndex = i
+      break
+    }
+  }
+
+  // On Ready
+  socket.on('player-ready', () => {
+    socket.broadcast.emit('enemy-ready', playerIndex)
+    connections[playerIndex] = true
+  })
+
+  // Check player connections
+  socket.on('check-players', () => {
+    const players = []
+    for (const i in connections) {
+      connections[i] === null ? players.push({connected: false, ready: false}) : players.push({connected: true, ready: connections[i]})
+    }
+    socket.emit('check-players', players)
+  })
+
+  // On Fire Received
+  socket.on('fire', id => {
+    console.log(`Shot fired from ${playerIndex}`, id)
+
+    // Emit the move to the other player
+    socket.broadcast.emit('fire', id)
+  })
+
+  // on Fire Reply
+  socket.on('fire-reply', square => {
+    console.log(square)
+
+    // Forward the reply to the other player
+    socket.broadcast.emit('fire-reply', square)
+  })
+
+  // Timeout connection
+  setTimeout(() => {
+    connections[playerIndex] = null
+    socket.emit('timeout')
+    socket.disconnect()
+  }, 600000) // 10 minute limit per player
 });
