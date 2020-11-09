@@ -11,10 +11,27 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="app.js" charset="utf-8"></script>
   </head>
-  <div><button onclick ="changeBoard()" class = "btn btn-warninßg" style="float: right;"> Change Board Background</button></div>
   <body>
+    
+    <audio id="backgroundMusic" src="/music/pirate.mp3"></audio>
+    <audio id="boomSound" src="/music/boom.mp3"></audio>
+    <audio id="missSound" src="/music/miss.mp3"></audio>
+    
     <div class="disconnect-container">
-      <a class="btn disconnect-btn" onclick="disconnect()">Disconnect</a> 
+      <a class="btn disconnect-btn" onclick="disconnect()">Disconnect</a>
+      <button onclick ="changeBoard()" class = "btn option-btn">Change Board Background</button>
+      <button id="playMusicButton" onclick ="playMusic()" class = "btn option-btn">Play Background Music</button>
+      <input type="range" min="1" max="100" value="50" class="slider" id="volumeSlider"> 
+      <script>
+        var audio =  document.getElementById("backgroundMusic");
+        var slider = document.getElementById("volumeSlider");
+        
+        slider.oninput = function() {
+          var audio =  document.getElementById("backgroundMusic");
+          var volume = this.value/100;
+          audio.volume = volume;
+        }
+      </script>
     </div>
 
     <div class="container">

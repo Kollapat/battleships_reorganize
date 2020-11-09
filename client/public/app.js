@@ -138,6 +138,20 @@ function disconnect() {
   username = "";
 }
 
+// Background Music
+function playMusic() {
+  let audio = document.getElementById("backgroundMusic");
+
+  if(audio.paused) {
+    audio.play();
+    audio.value = 0.5;
+    document.getElementById("playMusicButton").innerHTML = "Pause Background Music";
+  } else {
+    audio.pause();
+    document.getElementById("playMusicButton").innerHTML = "Play Background Music";
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const userGrid = document.querySelector('.grid-user')
   const computerGrid = document.querySelector('.grid-computer')
