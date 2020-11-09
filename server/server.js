@@ -1,3 +1,5 @@
+const { timeStamp } = require('console');
+
 let app = require('express')();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
@@ -21,7 +23,6 @@ io.on('connection', socket => {
   console.log('someone connected')
 
   socket.on('login', username => {
-
     let isExist = false;
     for(let each of onlineList) {
         if(each.name === username){
@@ -30,18 +31,17 @@ io.on('connection', socket => {
             break;
         }
     }
-
     if(!isExist) {
         onlineList = onlineList.filter(user => {
-            if(user.id != socket.id) return true
+            if(user.id != socket.id) return true;
         })
         let userData = {
             id: socket.id,
             name: username
         }
         onlineList.push(userData);
-        console.log(onlineList)
-        io.emit('update list', onlineList)
+        //console.log(onlineList)
+        io.emit('update list', onlineList);
       }
   })
 
@@ -49,25 +49,24 @@ io.on('connection', socket => {
          onlineList = onlineList.filter(user => {
              if(user.id !== socket.id) return true
          })
-         console.log(onlineList);
+         //console.log(onlineList);
   })
 
-  socket.on('connect', player => { //I choose enemy
-      let enemyId;
-      for(let each of onlineList){
-          if(each.name === player[1]) {
-              enemyId = each.id;
-              break;
-          }
-      }
-      let roomName = player[0] + player[1];
-      socket.join(roomName); //I join
-      io.to(enemyId).emit('informRoom', roomName); //tell enemy to join
+  socket.on('connectt', player => {
+    let enemyId;
+    for(let each of onlineList){
+        if(each.name === player[1]) {
+            enemyId = each.id;
+            break;
+        }
+    }
+    let roomName = player[0] + player[1];
+    socket.join(roomName); //I join
+    io.to(enemyId).emit('inform room', roomName); //tell enemy to join //I choose enemy
   })
 
   socket.on('joinRoom', roomName => {
       socket.join(roomName); // enemy join
-
       io.to(roomName).emit('start the game', roomName);
   })
 });

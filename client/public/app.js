@@ -1,18 +1,20 @@
 var socket = io.connect('localhost:7000')
 
 socket.on('update list', onlineList => {
-  console.log(onlineList);
+  console.log("updated list");
   var playersArray = [];
   for(i=0; i<onlineList.length; i++) {
     var x = onlineList[i].name;
     playersArray.push(x);
+
   }
   console.log(playersArray);
   getTable(playersArray);
   
 })
 
-socket.on('informRoom', roomName => {
+socket.on('inform room', roomName => {
+  console.log("Room Informed");
   socket.emit('joinRoom', roomName);
 })
 
@@ -30,9 +32,7 @@ var username = "";
 
 function saveUsername() {
   username = document.getElementById('username-input').value;
-  console.log(username);
   window.localStorage.setItem("player1Name", username);
-  
   socket.emit('login', localStorage.getItem("player1Name"));
 
   if (username == "") {
@@ -46,30 +46,6 @@ function saveUsername() {
     document.getElementById("welcomeMessage").innerHTML = nameMessage;
     socket.emit('login', localStorage.getItem("player1Name"));
   }  
-}
-
-//Change Background
-function changeBackground() {
-  var caseno = getRandomizer( 1, 3 );
-  console.log(caseno);
-  switch(caseno){
-    case 1: var bgColor = "rgb(" + 178 + "," + 217 + "," + 255  +")";break;
-    case 2: var bgColor = "rgb(" + 152 + "," + 252 + "," + 176  +")";break;
-    case 3: var bgColor = "rgb(" + 255 + "," + 188 + "," + 247  +")";break;
-  }
-  window.localStorage.setItem("bgColorsave", bgColor);
-
-  console.log(bgColor)
-  document.body.style.background = bgColor
-}
-
-function changeBackgroudUpdate(){
-  document.body.style.background = window.localStorage.getItem("bgColorsave");
-}
-
-function getRandomizer(bottom, top) {
-      return Math.floor( Math.random() * ( 1 + top - bottom ) ) + bottom;
-
 }
 
 function changeBoard()
@@ -101,8 +77,7 @@ function getTable(input) {
     cell1.innerHTML = input[i];
     if (input[i] != username) {
         var connectParameter = input[i];
-        var test = '\"win\"';
-        cell2.innerHTML = '<a class="btn connect-btn" onclick="connect('+i+')">Connect & Play</a>';
+        cell2.innerHTML = '<a class="btn connect-btn" onclick="connect(\''+connectParameter+'\')">Connect & Play</a>';
     } else {
         cell2.innerHTML = "This is you!"
     }
@@ -116,9 +91,11 @@ function connect(choice) {
     alert("Please enter a username first!");
   } else {
     window.localStorage.setItem("player2Name", choice);
+    console.log(window.localStorage.getItem("player1Name"));
     let pair  = [window.localStorage.getItem("player1Name"), choice];
-    socket.emit('connect', pair);
-    location.href = "/multiplayer.html";
+    console.log(pair);
+    socket.emit('connectt', pair);
+    //location.href = "/multiplayer.html";
   } 
 }
 
