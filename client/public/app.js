@@ -13,8 +13,8 @@ socket.on('update list', onlineList => {
   
 })
 
-socket.on('inform room', roomName => {
-  console.log("Room Informed");
+socket.on('inform room', (roomName, enemyName, start1st) => {
+  window.localStorage.setItem("player2Name", enemyName);
   socket.emit('joinRoom', roomName);
 })
 

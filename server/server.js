@@ -62,7 +62,9 @@ io.on('connection', socket => {
     }
     let roomName = player[0] + player[1];
     socket.join(roomName); //I join
-    io.to(enemyId).emit('inform room', roomName); //tell enemy to join //I choose enemy
+    const rand = Boolean(Math.round(Math.random()));
+    io.to(enemyId).emit('inform room', roomName, player[0], rand);
+    
   })
 
   socket.on('joinRoom', roomName => {
