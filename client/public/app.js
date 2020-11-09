@@ -95,7 +95,6 @@ function connect(choice) {
     let pair  = [window.localStorage.getItem("player1Name"), choice];
     console.log(pair);
     socket.emit('connectt', pair);
-    //location.href = "/multiplayer.html";
   } 
 }
 
@@ -197,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createBoard(userGrid, userSquares)
   createBoard(computerGrid, computerSquares)
+
+  test();
 
   // Select Player Mode
   if (gameMode === 'singlePlayer') {
@@ -587,6 +588,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function gameOver() {
     isGameOver = true
     startButton.removeEventListener('click', playGameSingle)
+  }
+
+  function test() {
+    console.log('work')
   }
 
    
