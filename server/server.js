@@ -18,7 +18,7 @@ http.listen(process.env.PORT || 7000, '0.0.0.0', () => {
 let onlineList = [];
 
 io.on('connection', socket => {
-  console.log('someone connect')
+  console.log('someone connected')
 
   socket.on('login', username => {
 

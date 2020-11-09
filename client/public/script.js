@@ -41,6 +41,7 @@ function changeBackground() {
 
 function getchoice0() {
   document.getElementById("choice0").innerHTML = playersArray[0];
+  console.log(playersArray[0]);
   return playersArray[0];
 }
 

@@ -7,6 +7,7 @@ socket.on('update list', onlineList => {
     var x = onlineList[i].name;
     playersArray.push(x);
   }
+  console.log(playersArray);
   getTable(playersArray);
   
 })
@@ -93,6 +94,7 @@ function getTable(input) {
   }
 
   for(i=0; i<input.length; i++) {
+    console.log(input[i]);
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
@@ -100,7 +102,7 @@ function getTable(input) {
     if (input[i] != username) {
         var connectParameter = input[i];
         var test = '\"win\"';
-        cell2.innerHTML = '<a class="btn connect-btn" onclick="connect("win")">Connect & Play</a>';
+        cell2.innerHTML = '<a class="btn connect-btn" onclick="connect('+i+')">Connect & Play</a>';
     } else {
         cell2.innerHTML = "This is you!"
     }
