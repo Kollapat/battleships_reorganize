@@ -28,6 +28,20 @@ socket.on('username exists', () => {
   isDupluicated = true;
 })
 
+//SOUND EFFECTS
+  
+function playBoomSound() {
+  var boomaudio =  document.getElementById("boomSound");
+  boomaudio.volume = 0.2;
+  boomaudio.play();
+}
+
+function playMissSound() {
+  var missaudio =  document.getElementById("missSound");
+  missaudio.volume = 0.5;
+  missaudio.play();
+}
+
 //LOBBY NAME LOGIC
 var username = "";
 
@@ -485,8 +499,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (obj.includes('taken')) {
       enemySquare.classList.add('boom')
+      playBoomSound();
     } else {
       enemySquare.classList.add('miss')
+      playMissSound();
     }
     checkForWins()
     currentPlayer = 'enemy'
@@ -581,7 +597,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    
 
-  //LOBBY 
  
   
 })
