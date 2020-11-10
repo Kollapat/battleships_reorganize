@@ -21,11 +21,17 @@ socket.on('inform room', (roomName, enemyName, start1st) => {
 
 socket.on('start the game', roomName => {
   location.href = "/multiplayer.html";
+  window.localStorage.setItem("roomName", roomName);
 })
 
 var isDupluicated = false;
 socket.on('username exists', () => {
   isDupluicated = true;
+})
+
+var numOfClients = 0;
+socket.on('checked connection', num => {
+  numOfClients = num;
 })
 
 //SOUND EFFECTS
@@ -119,14 +125,22 @@ function getPlayerOneName() {
 }
 
 function getPlayerTwoName() {
-    playerTwoName = window.localStorage.getItem("player2Name")
-document.getElementById("playerTwoName").innerHTML = playerTwoName;  
+  playerTwoName = window.localStorage.getItem("player2Name")
+  document.getElementById("playerTwoName").innerHTML = playerTwoName;  
 }
 
 function disconnect() {
   location.href= '/lobby.html'
   window.localStorage.removeItem("player1Name");
   username = "";
+}
+
+let isConnected = true; //just let this always true. will implement socket.io later
+function checkConnection() {
+  if(isConnected) {
+
+  }
+  
 }
 
 // Background Music
@@ -249,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Another player has connected or disconnected
     socket.on('player-connection', num => {
       console.log(`Player number ${num} has connected or disconnected`)
-      playerConnectedOrDisconnected(num)
+      playerOrDisconnected(num)
     })
 
     // On enemy ready
@@ -275,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // On Timeout
     socket.on('timeout', () => {
-      infoDisplay.innerHTML = 'You have reached the 10 minute limit'
+      infoDisplay.innerHTML = 'You have reached the 10 minute gameroom limit'
     })
 
     // Ready button click

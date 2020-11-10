@@ -68,8 +68,16 @@ io.on('connection', socket => {
   })
 
   socket.on('joinRoom', roomName => {
-      socket.join(roomName); // enemy join
-      io.to(roomName).emit('start the game', roomName);
+    socket.join(roomName); // enemy join
+    io.to(roomName).emit('start the game', roomName);
+  })
+
+  socket.on('check connection', roomName => {
+    var clientList = io.sockets.clients(roomName);
+    var numOfClients = clientList.length;
+
+    
+
   })
 
   // Handle a socket connection request from web client

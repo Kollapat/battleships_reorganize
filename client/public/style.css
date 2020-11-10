@@ -317,18 +317,38 @@ body {
   margin: 2vmin;
 }
 
-.connected, .ready {
+.ready {
   font-weight: normal;
   opacity: .25;
   text-decoration: line-through;
 }
 
-.connected.active,
 .ready.active {
   opacity: 1;
   text-decoration: none;
 }
 
+.connected1 {
+  font-weight: normal;
+  opacity: .25;
+  text-decoration: line-through;
+}
+
+.connected1.active {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.connected2 {
+  font-weight: normal;
+  opacity: .25;
+  text-decoration: line-through;
+}
+
+.connected2.active {
+  opacity: 1;
+  text-decoration: none;
+}
 
 
 
