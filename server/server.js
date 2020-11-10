@@ -84,6 +84,8 @@ io.on('connection', socket => {
     }
   }
 
+  socket.emit('player-number', playerIndex)
+
   // On Ready
   socket.on('player-ready', () => {
     socket.broadcast.emit('enemy-ready', playerIndex)

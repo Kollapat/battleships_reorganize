@@ -45,6 +45,19 @@ body {
   color: #333;
 }
 
+.btntohide {
+  font-size: inherit;
+  background-color: hsl(30, 100%, 50%);
+  padding: .5em 1em;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: .2em;
+  color: #333;
+  visibility: hidden;
+}
+
 .btn:hover, .btn:focus {
   background-color: hsl(30, 100%, 40%);
 }
@@ -68,8 +81,8 @@ body {
   margin: 2vmin;
   display: grid;
   background-color: hsl(200, 100%, 50%);
-  grid-template-rows: repeat(10, 4.6vmin);
-  grid-template-columns: repeat(10, 4.6vmin);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
 }
 
 .grid-computer > .taken,
@@ -82,8 +95,8 @@ body {
   margin: 2vmin;
   display: grid;
   background-color: hsl(133, 100%, 33%);
-  grid-template-rows: repeat(10, 4.6vmin);
-  grid-template-columns: repeat(10, 4.6vmin);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
 }
 
 .grid-computer1 > .taken,
@@ -195,22 +208,29 @@ body {
 }
 
 .destroyer-container {
-  --width: 2;
+  --width: 4;
 }
 
 .destroyer-container-vertical {
-  --height: 2;
+  --height: 4;
   --width: 1;
 }
 
-.submarine-container,
-.cruiser-container {
-  --width: 3;
+.submarine-container {
+  --width: 4;
 }
 
-.submarine-container-vertical,
+.submarine-container-vertical {
+  --height: 4;
+  --width: 1;
+}
+
+.cruiser-container {
+  --width: 4;
+}
+
 .cruiser-container-vertical {
-  --height: 3;
+  --height: 4;
   --width: 1;
 }
 
@@ -220,15 +240,6 @@ body {
 
 .battleship-container-vertical {
   --height: 4;
-  --width: 1;
-}
-
-.carrier-container {
-  --width: 5;
-}
-
-.carrier-container-vertical {
-  --height: 5;
   --width: 1;
 }
 
@@ -455,4 +466,40 @@ body {
   border-radius: 50%;
   background: hsl(30, 100%, 50%);
   cursor: pointer;
+}
+
+.h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+  justify-content: center;
+}
+
+#clockdiv{
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div{
+  padding: 10px;
+  border-radius: 3px;
+  background: #00BF96;
+  display: inline-block;
+}
+
+#clockdiv div > span{
+  padding: 15px;
+  border-radius: 3px;
+  background: #00816A;
+  display: inline-block;
+}
+
+.smalltext{
+  padding-top: 5px;
+  font-size: 16px;
 }
