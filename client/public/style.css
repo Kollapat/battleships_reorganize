@@ -478,7 +478,7 @@ body {
 
 #clockdiv{
   font-family: sans-serif;
-  color: #fff;
+  color: black;
   display: inline-block;
   font-weight: 100;
   text-align: center;
@@ -488,14 +488,14 @@ body {
 #clockdiv > div{
   padding: 10px;
   border-radius: 3px;
-  background: #00BF96;
+  background: #FAC67A;
   display: inline-block;
 }
 
 #clockdiv div > span{
   padding: 15px;
   border-radius: 3px;
-  background: #00816A;
+  background: lightgrey;
   display: inline-block;
 }
 
