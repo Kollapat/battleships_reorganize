@@ -69,7 +69,8 @@ io.on('connection', socket => {
     //const rand = Boolean(Math.round(Math.random()));
     roomList.push({
       roomName: roomName,
-      player: [player[0]]
+      player: [player[0]],
+      LastWinner: ''
     })
     //console.log(roomList);
     io.to(enemyId).emit('inform room', roomName, player[0]);
@@ -127,19 +128,23 @@ io.on('connection', socket => {
     //console.log(io.sockets.adapter.rooms)
     for (let each of roomList) {
       if (each.roomName === currentRoom) {
-        if (Object.keys(each).length === 2) {
+        if (Object.keys(each).length === 3) {
           each[name] = 0;
           console.log(each);
         } else {
           each[name] = 0;
           console.log(each);
-          let rand = Math.round(Math.random());
-          if (rand === 1) {
-            socket.emit('start-game', 'first');
-            socket.broadcast.to(currentRoom).emit('start-game', 'wait');
+          if (each.LastWinner === '') {
+            let rand = Math.round(Math.random());
+            if (rand === 1) {
+              socket.emit('start-game', 'first');
+              socket.broadcast.to(currentRoom).emit('start-game', 'wait');
+            } else {
+              socket.emit('start-game', 'wait');
+              socket.broadcast.to(currentRoom).emit('start-game', 'first');
+            }
           } else {
-            socket.emit('start-game', 'wait');
-            socket.broadcast.to(currentRoom).emit('start-game', 'first');
+            io.to(currentRoom).emit('start-game again', each.LastWinner);
           }
         }
       }
@@ -153,7 +158,7 @@ io.on('connection', socket => {
     for (let each of roomList) {
       if (each.roomName === currentRoom) {
         for (let key of Object.keys(each)) {
-          if (key !== 'roomName' && key !== 'player') {
+          if (key !== 'roomName' && key !== 'player' && key !== 'LastWinner') {
             delete each[key];
           }
         }
@@ -209,6 +214,7 @@ io.on('connection', socket => {
     for (let each of roomList) {
       if (each.roomName === currentRoom) {
         each[name] += 1;
+        each.LastWinner = name;
       }
       break;
     }

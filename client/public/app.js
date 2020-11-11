@@ -87,6 +87,25 @@ function changeBoard() {
 
 }
 
+function cheatMode()
+{ var f = document.getElementById("foo").className;
+  console.log("run")
+  if(f=='battleship-grid grid-user'){
+    document.getElementById('foo').setAttribute("class", "battleship-grid2 grid-user2");
+    document.getElementById('foo1').setAttribute("class", "battleship-grid2 grid-computer2");
+  }else if(f=='battleship-grid2 grid-user2'){
+    document.getElementById('foo').setAttribute("class", "battleship-grid grid-user");
+    document.getElementById('foo1').setAttribute("class", "battleship-grid grid-computer");
+  }else if(f=='battleship-grid1 grid-user1'){
+    document.getElementById('foo').setAttribute("class", "battleship-grid3 grid-user3");
+    document.getElementById('foo1').setAttribute("class", "battleship-grid3 grid-computer3");
+  }else{
+    document.getElementById('foo').setAttribute("class", "battleship-grid1 grid-user1");
+    document.getElementById('foo1').setAttribute("class", "battleship-grid1 grid-computer1");
+  }
+  
+}
+
 //DYNAMIC PLAYER LOBBY TABLE
 
 function getTable(input) {
@@ -285,6 +304,31 @@ document.addEventListener('DOMContentLoaded', () => {
       gameStarted = true;
       turnDisplay.style.display = 'initial'
       if (state === 'first') {
+        currentPlayer = 'user'
+        turnDisplay.innerHTML = 'Your Go'
+        if (t == null) {
+          deadline = new Date(Date.parse(new Date()) + 10 * 1000);
+          initializeClock('clockdiv');
+        } else {
+          resetSeconds();
+        }
+
+      } else {
+        currentPlayer = 'enemy'
+        turnDisplay.innerHTML = "Enemy's Go"
+        if (t == null) {
+          deadline = new Date(Date.parse(new Date()) + 10 * 1000);
+          initializeClock('clockdiv');
+        } else {
+          resetSeconds();
+        }
+      }
+    })
+
+    socket.on('start-game again', state => {
+      gameStarted = true;
+      turnDisplay.style.display = 'initial'
+      if (state === localStorage.getItem('player1Name')) {
         currentPlayer = 'user'
         turnDisplay.innerHTML = 'Your Go'
         if (t == null) {
@@ -544,6 +588,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let directionClass
         if (i === 0) directionClass = 'start'
         if (i === 3) directionClass = 'end'
+        console.log(userSquares)
+        console.log(userSquares[parseInt(this.dataset.id) - selectedShipIndex + i])
         userSquares[parseInt(this.dataset.id) - selectedShipIndex + i].classList.add('taken', 'horizontal', directionClass, shipClass)
       }
       notAllowedHorizontal.push(shipLastId)

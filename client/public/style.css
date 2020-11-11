@@ -105,6 +105,32 @@ body {
   border-radius: 0 !important;
 }
 
+.battleship-grid2 {
+  margin: 2vmin;
+  display: grid;
+  background-color: hsl(200, 100%, 50%);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
+}
+.grid-computer2 > .taken,
+.grid-computer2 > .boom {
+  background-color: hsl(0, 0%, 80%) !important;
+  border-radius: 0 !important;
+}
+
+.battleship-grid3 {
+  margin: 2vmin;
+  display: grid;
+  background-color: hsl(133, 100%, 33%);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
+}
+.grid-computer3 > .taken,
+.grid-computer3 > .boom {
+  background-color: hsl(0, 0%, 80%) !important;
+  border-radius: 0 !important;
+}
+
 .taken,
 .ship {
   position: relative;
@@ -204,6 +230,12 @@ body {
   border: 1px solid hsla(0, 0%, 100%, .2);
 }
 .battleship-grid1 div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+}
+.battleship-grid2 div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+}
+.battleship-grid3 div {
   border: 1px solid hsla(0, 0%, 100%, .2);
 }
 
@@ -595,3 +627,9 @@ body {
   max-height: 30%;
   overflow: auto;
 }
+
+.clear-btn {
+  background-color: #F3F3F3;
+  color: #F3F3F3;
+}
+
