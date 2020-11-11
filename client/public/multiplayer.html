@@ -20,7 +20,7 @@
     <audio id="beepSound" src="/music/beep.mp3"></audio>
     
     <div class="disconnect-container">
-      <a class="btn disconnect-btn" onclick="disconnect()">Disconnect</a>
+      <a class="btn disconnect-btn" onclick="disconnect()">Reset & Disconnect</a>
       <button id="playagain" class="btntohide">Play Again</button>
       <button onclick ="changeBoard()" class = "btn option-btn">Change Board Background</button>
       <button id="playMusicButton" onclick ="playMusic()" class = "btn option-btn">Play Background Music</button>
@@ -76,6 +76,7 @@
         <div class="connected1"></div>
         <div class="ready"></div>
         <div class="scorePlayer1" id="scorePlayer1"></div>
+        <!--<div class="pointsPlayer1" id="pointsPlayer1">Your Points: 0</div>-->
       </div>
       
       <div class="player p2">
@@ -84,6 +85,7 @@
         <div class="connected2"></div>
         <div class="ready"></div>
         <div class="scorePlayer2" id="scorePlayer2"></div>
+        <!--<div class="pointsPlayer2" id="pointsPlayer2">Enemy's Points: 0</div>-->
       </div>
     </div>
     <script>checkConnection()</script>

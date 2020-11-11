@@ -166,6 +166,21 @@ function checkConnection() {
 
 }
 
+/*function updatePlayer1Points() {
+  let player1Points = submarineCount + cruiserCount + battleshipCount + destroyerCount;
+  document.getElementById('pointsPlayer1').innerHTML = "Your points: " + player1Points;
+}
+
+function updatePlayer2Points() {
+  let player2Points = cpuCruiserCount + cpuBattleshipCount + cpuDestroyerCount + cpuSubmarineCount;
+  document.getElementById('pointsPlayer2').innerHTML = "Enemy's points: " + player2Points;
+}
+
+function updatePlayersPoints() {
+  updatePlayer1Points();
+  updatePlayer2Points();
+}*/
+
 // Background Music
 function playMusic() {
   let audio = document.getElementById("backgroundMusic");
@@ -407,17 +422,17 @@ document.addEventListener('DOMContentLoaded', () => {
       square.addEventListener('click', () => {
         if (currentPlayer === 'user') {
           shotFired = square.dataset.id
-          socket.emit('fire', { pos: shotFired, name: localStorage.getItem('player1Name') })
+          if(gameStarted) socket.emit('fire', { pos: shotFired, name: localStorage.getItem('player1Name') })
         }
       })
     })
 
     socket.on('fire', id => {
       if (isGameOver) return
-      enemyGo(id)
-      const square = userSquares[id]
-      socket.emit('fire-reply', square.classList)
-      playGameMulti()
+        enemyGo(id)
+        const square = userSquares[id]
+        socket.emit('fire-reply', square.classList)
+        playGameMulti()
     })
 
     // On Fire Received
@@ -696,10 +711,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const enemySquare = computerGrid.querySelector(`div[data-id='${shotFired}']`)
     const obj = Object.values(classList)
     if (!enemySquare.classList.contains('boom') && currentPlayer === 'user' && !isGameOver) {
-      if (obj.includes('destroyer')) destroyerCount++
-      if (obj.includes('submarine')) submarineCount++
-      if (obj.includes('cruiser')) cruiserCount++
-      if (obj.includes('battleship')) battleshipCount++
+      if (obj.includes('destroyer')) {
+        destroyerCount++;
+        
+      }
+      if (obj.includes('submarine')) {
+        submarineCount++;
+        
+      }
+      if (obj.includes('cruiser')) {
+        cruiserCount++;
+        
+      } 
+      if (obj.includes('battleship')) {
+        battleshipCount++;
+        
+      }
       checkForWins();
     }
     if (obj.includes('taken')) {
@@ -724,11 +751,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!userSquares[square].classList.contains('boom')) {
       const hit = userSquares[square].classList.contains('taken')
       userSquares[square].classList.add(hit ? 'boom' : 'miss')
-      if (userSquares[square].classList.contains('destroyer')) cpuDestroyerCount++
-      if (userSquares[square].classList.contains('submarine')) cpuSubmarineCount++
-      if (userSquares[square].classList.contains('cruiser')) cpuCruiserCount++
-      if (userSquares[square].classList.contains('battleship')) cpuBattleshipCount++
-      if (userSquares[square].classList.contains('carrier')) cpuCarrierCount++
+      if (userSquares[square].classList.contains('destroyer')) {
+        cpuDestroyerCount++;
+        
+      }
+      if (userSquares[square].classList.contains('submarine')) {
+        cpuSubmarineCount++;
+       
+      }
+      if (userSquares[square].classList.contains('cruiser')) {
+        cpuCruiserCount++;
+        
+      }
+      if (userSquares[square].classList.contains('battleship')) {
+        cpuBattleshipCount++;
+        
+      }
+      if (userSquares[square].classList.contains('carrier')) {
+        cpuCarrierCount++;
+       
+      }
       checkForWins()
     } else if (gameMode === 'singlePlayer') enemyGo()
     currentPlayer = 'user'
