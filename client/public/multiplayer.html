@@ -17,6 +17,7 @@
     <audio id="backgroundMusic" src="/music/pirate.mp3"></audio>
     <audio id="boomSound" src="/music/boom.mp3"></audio>
     <audio id="missSound" src="/music/miss.mp3"></audio>
+    <audio id="beepSound" src="/music/beep.mp3"></audio>
     
     <div class="disconnect-container">
       <a class="btn disconnect-btn" onclick="disconnect()">Disconnect</a>
@@ -24,16 +25,39 @@
       <button onclick ="changeBoard()" class = "btn option-btn">Change Board Background</button>
       <button id="playMusicButton" onclick ="playMusic()" class = "btn option-btn">Play Background Music</button>
       <input type="range" min="1" max="100" value="50" class="slider" id="volumeSlider"> 
+      <button class = "btn option-btn" onclick = "window.open('https://www.facebook.com/sharer/sharer.php?u=www.google.com')" target="_blank">
+        Share on Facebook
+      </button>
       <script>
-        var audio =  document.getElementById("backgroundMusic");
+        var bgAudio =  document.getElementById("backgroundMusic");
         var slider = document.getElementById("volumeSlider");
+        var boomAudio = document.getElementById("boomSound");
+        var missAudio = document.getElementById("missSound");
+        var beepAudio = document.getElementById("beepSound");
         
         slider.oninput = function() {
-          var audio =  document.getElementById("backgroundMusic");
+          var bgAudio =  document.getElementById("backgroundMusic");
+          var boomAudio = document.getElementById("boomSound");
+          var missAudio = document.getElementById("missSound");
+          var beepAudio = document.getElementById("beepSound");
           var volume = this.value/100;
-          audio.volume = volume;
+          bgAudio.volume = volume;
+          boomAudio.volume = volume;
+          missAudio.volume = volume;
+          beepAudio.volume = volume;
         }
       </script>
+    </div>
+    <div id="popup1" class="overlay">
+      <div class="popup" >
+        <h2>Tutorial</h2>
+        <a class="close" href="#popup1">×</a>
+        <div class="content">
+          <br>1. Drag the ship over the grid to place</br>
+          <br>2. Use rotate button to rotate ships</br>
+          <br>3. Each turn has time limit of 10 seconds only</br>
+        </div>
+      </div>
     </div>
 
     <div class="container">

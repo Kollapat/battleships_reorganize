@@ -48,6 +48,12 @@ function playMissSound() {
   missaudio.play();
 }
 
+function playClockSound() {
+  var beepaudio = document.getElementById("beepSound")
+  beepaudio.volume = 0.5;
+  beepaudio.play();
+}
+
 //LOBBY NAME LOGIC
 var username = "";
 
@@ -785,9 +791,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateClock() {
       t = getTimeRemaining();
-
-
       secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+      if(t.total <= 3*1000){
+        playClockSound();
+      }
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
