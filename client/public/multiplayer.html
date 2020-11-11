@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
     <script>
       let gameMode = 'multiPlayer'
+
     </script>
     <script src="http://localhost:7000/socket.io/socket.io.js"></script> 
     <script src="app.js" charset="utf-8"></script>
@@ -48,16 +49,16 @@
       <div class="player p1">
         <div id="playerOneName">Player 1</div>
         <script>getPlayerOneName()</script>
-        <div class="connected1">Connected</div>
-        <div class="ready">Ready</div>
+        <div class="connected1"></div>
+        <div class="ready"></div>
         <div class="scorePlayer1" id="scorePlayer1"></div>
       </div>
       
       <div class="player p2">
         <div id="playerTwoName">Player 2</div>
         <script>getPlayerTwoName()</script>
-        <div class="connected2">Connected</div>
-        <div class="ready">Ready</div>
+        <div class="connected2"></div>
+        <div class="ready"></div>
         <div class="scorePlayer2" id="scorePlayer2"></div>
       </div>
     </div>
