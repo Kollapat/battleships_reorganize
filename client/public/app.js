@@ -1,4 +1,4 @@
-var socket = io.connect('localhost:7000')
+var socket = io.connect('https://battleship-netcentric.et.r.appspot.com')
 
 socket.on('update list', onlineList => {
   console.log("updated list");
