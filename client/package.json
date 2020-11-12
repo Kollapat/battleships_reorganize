@@ -1,7 +1,7 @@
 {
   "name": "battleships",
   "version": "1.0.0",
-  "description": "Multiplayer Battleship Game",
+  "description": "Battleship Game",
   "main": "server.js",
   "scripts": {
     "start": "node server",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kubowania/battleships.git"
+    "url": "git+https://github.com/Kollapat/battleships_reorganize.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kubowania/battleships/issues"
+    "url": "https://github.com/Kollapat/battleships_reorganize/issues"
   },
-  "homepage": "https://github.com/kubowania/battleships#readme",
+  "homepage": "https://github.com/Kollapat/battleships_reorganize",
   "dependencies": {
     "express": "^4.17.1",
     "socket.io-client": "^2.3.1"
