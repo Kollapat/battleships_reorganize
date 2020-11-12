@@ -45,6 +45,19 @@ body {
   color: #333;
 }
 
+.btntohide {
+  font-size: inherit;
+  background-color: hsl(30, 100%, 50%);
+  padding: .5em 1em;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: .2em;
+  color: #333;
+  visibility: hidden;
+}
+
 .btn:hover, .btn:focus {
   background-color: hsl(30, 100%, 40%);
 }
@@ -68,8 +81,8 @@ body {
   margin: 2vmin;
   display: grid;
   background-color: hsl(200, 100%, 50%);
-  grid-template-rows: repeat(10, 4.6vmin);
-  grid-template-columns: repeat(10, 4.6vmin);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
 }
 
 .grid-computer > .taken,
@@ -82,13 +95,39 @@ body {
   margin: 2vmin;
   display: grid;
   background-color: hsl(133, 100%, 33%);
-  grid-template-rows: repeat(10, 4.6vmin);
-  grid-template-columns: repeat(10, 4.6vmin);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
 }
 
 .grid-computer1 > .taken,
 .grid-computer1 > .boom {
   background-color: hsl(133, 100%, 33%) !important;
+  border-radius: 0 !important;
+}
+
+.battleship-grid2 {
+  margin: 2vmin;
+  display: grid;
+  background-color: hsl(200, 100%, 50%);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
+}
+.grid-computer2 > .taken,
+.grid-computer2 > .boom {
+  background-color: hsl(0, 0%, 80%) !important;
+  border-radius: 0 !important;
+}
+
+.battleship-grid3 {
+  margin: 2vmin;
+  display: grid;
+  background-color: hsl(133, 100%, 33%);
+  grid-template-rows: repeat(8, 4.6vmin);
+  grid-template-columns: repeat(8, 4.6vmin);
+}
+.grid-computer3 > .taken,
+.grid-computer3 > .boom {
+  background-color: hsl(0, 0%, 80%) !important;
   border-radius: 0 !important;
 }
 
@@ -193,24 +232,37 @@ body {
 .battleship-grid1 div {
   border: 1px solid hsla(0, 0%, 100%, .2);
 }
+.battleship-grid2 div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+}
+.battleship-grid3 div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+}
 
 .destroyer-container {
-  --width: 2;
+  --width: 4;
 }
 
 .destroyer-container-vertical {
-  --height: 2;
+  --height: 4;
   --width: 1;
 }
 
-.submarine-container,
-.cruiser-container {
-  --width: 3;
+.submarine-container {
+  --width: 4;
 }
 
-.submarine-container-vertical,
+.submarine-container-vertical {
+  --height: 4;
+  --width: 1;
+}
+
+.cruiser-container {
+  --width: 4;
+}
+
 .cruiser-container-vertical {
-  --height: 3;
+  --height: 4;
   --width: 1;
 }
 
@@ -220,15 +272,6 @@ body {
 
 .battleship-container-vertical {
   --height: 4;
-  --width: 1;
-}
-
-.carrier-container {
-  --width: 5;
-}
-
-.carrier-container-vertical {
-  --height: 5;
   --width: 1;
 }
 
@@ -306,18 +349,38 @@ body {
   margin: 2vmin;
 }
 
-.connected, .ready {
+.ready {
   font-weight: normal;
   opacity: .25;
   text-decoration: line-through;
 }
 
-.connected.active,
 .ready.active {
   opacity: 1;
   text-decoration: none;
 }
 
+.connected1 {
+  font-weight: normal;
+  opacity: .25;
+  text-decoration: line-through;
+}
+
+.connected1.active {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.connected2 {
+  font-weight: normal;
+  opacity: .25;
+  text-decoration: line-through;
+}
+
+.connected2.active {
+  opacity: 1;
+  text-decoration: none;
+}
 
 
 
@@ -399,6 +462,11 @@ body {
 
 /*MULTIPLAYER PAGE*/
 
+.buttons-container {
+  display: flex;
+  padding: 10px;
+}
+
 .disconnect-container {
   display: flex;
   padding: 10px;
@@ -410,3 +478,159 @@ body {
 .disconnect-btn:hover, .disconnect-btn:focus {
   background-color: hsl(30, 100%, 50%);
 }
+
+.option-btn {
+  margin-left: 1rem;
+  background-color: #FAC67A ;
+}
+
+.slider {
+  margin-left: 1rem;
+  margin-top: 10px;
+  width: 10%;
+  -webkit-appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: hsl(30, 100%, 50%);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: hsl(30, 100%, 50%);
+  cursor: pointer;
+}
+
+.h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+  justify-content: center;
+}
+
+#clockdiv{
+  font-family: sans-serif;
+  color: black;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div{
+  padding: 10px;
+  border-radius: 3px;
+  background: #FAC67A;
+  display: inline-block;
+}
+
+#clockdiv div > span{
+  padding: 15px;
+  border-radius: 3px;
+  background: lightgrey;
+  display: inline-block;
+}
+
+.smalltext{
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+/*popup tutorial*/
+.box {
+  width: 20%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid orange;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: orange;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+}
+.overlay:target {
+  visibility: hidden;
+  opacity: 0;
+  display:none
+}
+.popup {
+  margin: 300px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: orange;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.clear-btn {
+  background-color: #F3F3F3;
+  color: #F3F3F3;
+  opacity: 0;
+}
+
