@@ -10,12 +10,14 @@
     </script>
     <script src="https://battleship-netcentric.et.r.appspot.com/socket.io/socket.io.js"></script> 
     <script src="app.js" charset="utf-8"></script>
+    <script src="background.js" charset="utf-8"></script>
   </head>
   <div>
     <button onclick ="changeBoard()" class = "btn btn-warninßg" style="float: right;"> Change Board Background</button>
     <button onclick ="cheatMode()" class = "btn clear-btn">Cheat Mode</button>
   </div>
   <body>
+    <script>changeBackgroudUpdate()</script>
     <audio id="backgroundMusic" src="/music/pirate.mp3"></audio>
     <audio id="boomSound" src="/music/boom.mp3"></audio>
     <audio id="missSound" src="/music/miss.mp3"></audio>
